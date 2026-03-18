@@ -93,7 +93,7 @@ document.querySelectorAll('.faq-toggle').forEach(btn => {
 
     // Close all
     document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'))
-    document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = '')
+    document.querySelectorAll('.faq-icon').forEach(i => (i as HTMLElement).style.transform = '')
 
     if (!isOpen) {
       answer.classList.remove('hidden')
