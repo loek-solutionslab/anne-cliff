@@ -5,12 +5,12 @@ import { getFooter } from '../components/footer'
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   ${getHeader('contact')}
 
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
-      <div class="space-y-8 fade-in">
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-ac-white">
+    <div class="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-16">
+      <div class="space-y-8 reveal">
         <div>
-          <p class="text-xs uppercase tracking-[0.2em] text-ac-muted mb-4">Contact</p>
-          <h1 class="font-display text-4xl md:text-6xl font-light text-ac-black">
+          <p class="text-[11px] uppercase tracking-[0.35em] text-ac-muted mb-4">Contact</p>
+          <h1 class="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-light italic text-ac-black">
             Get in touch
           </h1>
         </div>
@@ -49,8 +49,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </div>
       </div>
 
-      <div class="fade-in fade-in-delay-2">
-        <form class="space-y-6 bg-ac-cream p-8 md:p-10" onsubmit="event.preventDefault(); alert('Demo site — form submission disabled')">
+      <div class="reveal reveal-delay-2">
+        <form class="space-y-6 bg-ac-cream fabric-texture p-8 md:p-10" onsubmit="event.preventDefault(); alert('Demo site — form submission disabled')">
           <div>
             <label class="block text-xs uppercase tracking-widest text-ac-muted mb-2">Name</label>
             <input type="text" class="w-full px-4 py-3 bg-ac-white border border-ac-border text-ac-black focus:outline-none focus:border-ac-black transition-colors" placeholder="Your name" />
@@ -86,7 +86,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 initHeader()
 
-const elements = document.querySelectorAll('.fade-in')
+const elements = document.querySelectorAll('.reveal, .reveal-left, .line-draw')
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {

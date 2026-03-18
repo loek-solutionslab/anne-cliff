@@ -6,11 +6,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   ${getHeader('about')}
 
   <!-- Hero -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-cream">
-    <div class="max-w-3xl mx-auto text-center space-y-8 fade-in">
-      <p class="text-xs uppercase tracking-[0.2em] text-ac-muted">Our story</p>
-      <h1 class="font-display text-4xl md:text-6xl font-light leading-tight text-ac-black">
-        We believe comfort<br><span class="italic text-ac-teal">is not a luxury</span>
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-ac-cream fabric-texture">
+    <div class="max-w-3xl mx-auto text-center space-y-8 reveal">
+      <p class="text-[11px] uppercase tracking-[0.35em] text-ac-muted">Our story</p>
+      <h1 class="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-tight text-ac-black italic">
+        We believe comfort<br><span class="not-italic text-ac-teal">is not a luxury</span>
       </h1>
       <p class="text-ac-muted text-lg leading-relaxed max-w-xl mx-auto">
         And maturity doesn't need loud prints.
@@ -19,10 +19,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </section>
 
   <!-- Brand story -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-white">
-    <div class="max-w-3xl mx-auto space-y-16">
-      <div class="space-y-6 fade-in">
-        <h2 class="font-display text-2xl md:text-3xl font-light text-ac-black">The routine</h2>
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-ac-white">
+    <div class="max-w-[1400px] mx-auto space-y-16">
+      <div class="space-y-6 reveal">
+        <h2 class="font-display text-2xl md:text-3xl font-light italic text-ac-black">The routine</h2>
         <div class="space-y-4 text-ac-muted leading-relaxed text-lg">
           <p>Every morning starts with a routine. Shower. Coffee. Shirt. Go.</p>
           <p>You don't think about your underwear. And that's exactly the point.</p>
@@ -32,8 +32,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
       <div class="w-full h-px bg-ac-border"></div>
 
-      <div class="space-y-6 fade-in">
-        <h2 class="font-display text-2xl md:text-3xl font-light text-ac-black">The gap</h2>
+      <div class="space-y-6 reveal">
+        <h2 class="font-display text-2xl md:text-3xl font-light italic text-ac-black">The gap</h2>
         <div class="space-y-4 text-ac-muted leading-relaxed text-lg">
           <p>There is no premium underwear subscription in Europe. The man who wants premium comfort has to overpay, or settle for cotton, or choose loud prints, or buy one-off.</p>
           <p>We saw a gap between cheap &amp; loud and premium &amp; overpriced. Anne Cliff fills it.</p>
@@ -42,8 +42,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
       <div class="w-full h-px bg-ac-border"></div>
 
-      <div class="space-y-6 fade-in">
-        <h2 class="font-display text-2xl md:text-3xl font-light text-ac-black">The values</h2>
+      <div class="space-y-6 reveal">
+        <h2 class="font-display text-2xl md:text-3xl font-light italic text-ac-black">The values</h2>
         <div class="grid sm:grid-cols-2 gap-8">
           <div class="space-y-2">
             <h3 class="text-ac-black font-medium">Calm</h3>
@@ -66,8 +66,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
       <div class="w-full h-px bg-ac-border"></div>
 
-      <div class="space-y-6 fade-in">
-        <h2 class="font-display text-2xl md:text-3xl font-light text-ac-black">For whom</h2>
+      <div class="space-y-6 reveal">
+        <h2 class="font-display text-2xl md:text-3xl font-light italic text-ac-black">For whom</h2>
         <div class="space-y-4 text-ac-muted leading-relaxed text-lg">
           <p>Men, 28&ndash;55. Buys underwear functionally. Sticks with a brand when fit and quality are right.</p>
           <p>What they want: comfort, no hassle, no excessive choice. Premium feel without premium attitude or price.</p>
@@ -77,9 +77,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </section>
 
   <!-- CTA -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-forest text-ac-white text-center">
-    <div class="max-w-3xl mx-auto space-y-8 fade-in">
-      <h2 class="font-display text-3xl md:text-5xl font-light">
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-ac-forest text-ac-white text-center fabric-texture">
+    <div class="max-w-3xl mx-auto space-y-8 reveal">
+      <h2 class="font-display text-3xl md:text-5xl font-light italic">
         Premium comfort. Without the fuss.
       </h2>
       <a href="/pages/product.html" class="inline-flex items-center gap-3 px-10 py-4 bg-ac-white text-ac-black text-sm tracking-wide hover:bg-ac-suede hover:text-ac-white transition-colors duration-300">
@@ -94,7 +94,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 initHeader()
 
-const elements = document.querySelectorAll('.fade-in')
+const elements = document.querySelectorAll('.reveal, .reveal-left, .line-draw')
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {

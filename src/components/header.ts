@@ -21,36 +21,35 @@ export function getHeader(currentPage: string = ''): string {
 
   const navLinks = navItems
     .map(item => {
-      const active = currentPage === item.id ? 'text-ac-black' : 'text-ac-muted hover:text-ac-black'
-      return `<a href="${item.href}" class="${active} text-sm tracking-wide transition-colors duration-300">${item.label}</a>`
+      const active = currentPage === item.id
+        ? 'text-ac-black after:scale-x-100'
+        : 'text-ac-muted hover:text-ac-black'
+      return `<a href="${item.href}" class="${active} relative text-[12px] uppercase tracking-[0.15em] transition-colors duration-300 after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-px after:bg-ac-suede after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">${item.label}</a>`
     })
     .join('\n')
 
   return `
     ${getAnnouncementBar()}
-    <header class="sticky top-0 z-50 bg-ac-white/95 backdrop-blur-sm border-b border-ac-border">
-      <nav class="max-w-6xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
-        <a href="/" class="font-display text-2xl md:text-3xl font-light tracking-tight text-ac-black">
+    <header class="sticky top-0 z-50 bg-ac-white/90 backdrop-blur-md border-b border-ac-border/60">
+      <nav class="max-w-[1400px] mx-auto px-6 md:px-16 py-5 flex items-center justify-between">
+        <a href="/" class="font-display text-[1.65rem] font-light tracking-[-0.01em] text-ac-black italic">
           Anne Cliff
         </a>
 
-        <!-- Desktop nav -->
-        <div class="hidden md:flex items-center gap-8">
+        <div class="hidden md:flex items-center gap-10">
           ${navLinks}
         </div>
 
-        <!-- Mobile menu button -->
         <button id="mobile-menu-btn" class="md:hidden p-2" aria-label="Menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 text-ac-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
       </nav>
 
-      <!-- Mobile menu -->
       <div id="mobile-menu" class="hidden md:hidden border-t border-ac-border bg-ac-white">
-        <div class="px-6 py-4 flex flex-col gap-4">
-          ${navItems.map(item => `<a href="${item.href}" class="text-ac-muted hover:text-ac-black text-sm tracking-wide py-2">${item.label}</a>`).join('\n')}
+        <div class="px-6 py-6 flex flex-col gap-5">
+          ${navItems.map(item => `<a href="${item.href}" class="text-ac-muted hover:text-ac-black text-[12px] uppercase tracking-[0.15em] py-1 transition-colors">${item.label}</a>`).join('\n')}
         </div>
       </div>
     </header>

@@ -6,25 +6,25 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   ${getHeader('product')}
 
   <!-- Hero -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-      <div class="space-y-8 fade-in">
-        <p class="text-xs uppercase tracking-[0.2em] text-ac-muted">The boxer</p>
-        <h1 class="font-display text-4xl md:text-6xl font-light leading-tight text-ac-black">
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-ac-white">
+    <div class="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8 reveal">
+        <p class="text-[11px] uppercase tracking-[0.35em] text-ac-muted">The boxer</p>
+        <h1 class="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-tight text-ac-black italic">
           One fit.<br>
-          <span class="italic text-ac-teal">Always right.</span>
+          <span class="not-italic text-ac-teal">Always right.</span>
         </h1>
         <p class="text-ac-muted text-lg leading-relaxed max-w-md">
           We didn't design ten options and let you guess. We perfected one. 95% Tencel&trade; Lyocell, 5% elastane. The same fabric as &euro;35 premium brands. At &euro;16.
         </p>
       </div>
-      <div class="fade-in fade-in-delay-2">
-        <div class="aspect-square bg-ac-cream flex items-center justify-center">
-          <div class="text-center space-y-4">
-            <div class="w-48 h-48 mx-auto bg-ac-forest/10 rounded-full flex items-center justify-center">
-              <span class="font-display text-6xl font-light text-ac-forest">AC</span>
+      <div class="reveal reveal-delay-2">
+        <div class="aspect-square overflow-hidden" style="background: linear-gradient(135deg, #e8e0d4 0%, #d4c9b8 20%, #c8bba8 40%, #b8a898 55%, #a89888 70%, #c4b8a8 85%, #d8cebe 100%);">
+          <div class="w-full h-full flex items-end p-8" style="background: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px), repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);">
+            <div>
+              <p class="text-[11px] uppercase tracking-[0.35em] text-ac-black/50 mb-1">95% Tencel Lyocell</p>
+              <p class="font-display text-2xl font-light italic text-ac-black/70">Suede &amp; Stone</p>
             </div>
-            <p class="text-xs text-ac-muted uppercase tracking-widest">Product visual placeholder</p>
           </div>
         </div>
       </div>
@@ -32,17 +32,17 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </section>
 
   <!-- Material -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-cream">
-    <div class="max-w-6xl mx-auto">
-      <div class="mb-16 fade-in">
-        <p class="text-xs uppercase tracking-[0.2em] text-ac-muted mb-4">Material</p>
-        <h2 class="font-display text-3xl md:text-5xl font-light text-ac-black">
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-ac-cream fabric-texture">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-16 reveal">
+        <p class="text-[11px] uppercase tracking-[0.35em] text-ac-muted mb-4">Material</p>
+        <h2 class="font-display text-3xl md:text-5xl font-light italic text-ac-black">
           Tencel&trade; Lyocell
         </h2>
       </div>
 
       <div class="grid md:grid-cols-2 gap-16">
-        <div class="space-y-8 fade-in">
+        <div class="space-y-8 reveal">
           <div class="space-y-4">
             <h3 class="font-display text-xl text-ac-black">95% Tencel&trade; Lyocell, 5% Elastane</h3>
             <p class="text-ac-muted leading-relaxed">
@@ -82,9 +82,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           </div>
         </div>
 
-        <div class="space-y-6 fade-in fade-in-delay-2">
+        <div class="space-y-6 reveal reveal-delay-2">
           <div class="bg-ac-white p-8 border border-ac-border">
-            <h3 class="font-display text-xl text-ac-black mb-4">The comparison</h3>
+            <h3 class="font-display text-xl italic text-ac-black mb-4">The comparison</h3>
             <table class="w-full text-sm">
               <thead>
                 <tr class="border-b border-ac-border">
@@ -128,17 +128,17 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </section>
 
   <!-- Subscription options -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 fade-in">
-        <p class="text-xs uppercase tracking-[0.2em] text-ac-muted mb-4">Subscription</p>
-        <h2 class="font-display text-3xl md:text-5xl font-light text-ac-black">
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-ac-white">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="text-center mb-16 reveal">
+        <p class="text-[11px] uppercase tracking-[0.35em] text-ac-muted mb-4">Subscription</p>
+        <h2 class="font-display text-3xl md:text-5xl font-light italic text-ac-black">
           Choose your rhythm
         </h2>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        <div class="border border-ac-border p-8 text-center space-y-4 fade-in fade-in-delay-1 hover:border-ac-black transition-colors">
+        <div class="border border-ac-border p-8 text-center space-y-4 reveal reveal-delay-1 hover:border-ac-black transition-colors">
           <p class="text-xs uppercase tracking-widest text-ac-muted">Every 6 weeks</p>
           <p class="font-display text-4xl text-ac-black">&euro;16</p>
           <p class="text-xs text-ac-muted">per boxer &middot; ~8 per year</p>
@@ -146,19 +146,19 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
             <span class="inline-block px-3 py-1 bg-ac-forest/10 text-ac-forest text-xs">Recommended</span>
           </div>
         </div>
-        <div class="border border-ac-border p-8 text-center space-y-4 fade-in fade-in-delay-2 hover:border-ac-black transition-colors">
+        <div class="border border-ac-border p-8 text-center space-y-4 reveal reveal-delay-2 hover:border-ac-black transition-colors">
           <p class="text-xs uppercase tracking-widest text-ac-muted">Every 2 months</p>
           <p class="font-display text-4xl text-ac-black">&euro;17</p>
           <p class="text-xs text-ac-muted">per boxer &middot; 6 per year</p>
         </div>
-        <div class="border border-ac-border p-8 text-center space-y-4 fade-in fade-in-delay-3 hover:border-ac-black transition-colors">
+        <div class="border border-ac-border p-8 text-center space-y-4 reveal reveal-delay-3 hover:border-ac-black transition-colors">
           <p class="text-xs uppercase tracking-widest text-ac-muted">Every 3 months</p>
           <p class="font-display text-4xl text-ac-black">&euro;18</p>
           <p class="text-xs text-ac-muted">per boxer &middot; 4 per year</p>
         </div>
       </div>
 
-      <div class="text-center mt-12 fade-in">
+      <div class="text-center mt-12 reveal">
         <p class="text-sm text-ac-muted mb-6">Free shipping. Cancel or pause anytime. No strings.</p>
         <a href="/pages/contact.html" class="inline-flex items-center gap-3 px-10 py-4 bg-ac-black text-ac-white text-sm tracking-wide hover:bg-ac-forest transition-colors duration-300">
           Start your subscription
@@ -173,7 +173,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 initHeader()
 
-const elements = document.querySelectorAll('.fade-in')
+const elements = document.querySelectorAll('.reveal, .reveal-left, .line-draw')
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {

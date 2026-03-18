@@ -3,11 +3,13 @@
 @theme {
   --font-display: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
   --color-ac-black: #1a1a1a;
   --color-ac-white: #faf9f7;
-  --color-ac-cream: #f5f0eb;
+  --color-ac-cream: #f0ebe4;
   --color-ac-suede: #c4a882;
+  --color-ac-suede-light: #d4c4a8;
   --color-ac-leather: #8b6914;
   --color-ac-forest: #2d4a3e;
   --color-ac-teal: #3a6b6b;
@@ -15,6 +17,7 @@
   --color-ac-muted: #8a8580;
   --color-ac-border: #e0dbd5;
   --color-ac-dark: #111111;
+  --color-ac-warm: #3d3530;
 
   --color-sl-black: #0a0a0a;
   --color-sl-white: #fafafa;
@@ -40,38 +43,158 @@ body {
   font-family: var(--font-body);
   color: var(--color-ac-black);
   background-color: var(--color-ac-white);
+  overflow-x: hidden;
 }
 
-.fade-in {
+/* ── Reveal animations ── */
+.reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.fade-in.visible {
+.reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+.reveal-delay-5 { transition-delay: 0.6s; }
 
-.fade-in-delay-1 { transition-delay: 0.1s; }
-.fade-in-delay-2 { transition-delay: 0.2s; }
-.fade-in-delay-3 { transition-delay: 0.3s; }
-.fade-in-delay-4 { transition-delay: 0.4s; }
+/* Horizontal reveal */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
 
-/* Announcement bar */
+/* ── Fabric texture (CSS only) ── */
+.fabric-texture {
+  position: relative;
+}
+.fabric-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Grain overlay ── */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* ── Line draw ── */
+.line-draw {
+  height: 1px;
+  background: var(--color-ac-suede);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.line-draw.visible {
+  transform: scaleX(1);
+}
+
+/* ── Swatch colors for product display ── */
+.swatch {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.swatch:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* ── Smooth link underline ── */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Announcement bar ── */
 .announcement-bar {
   background-color: var(--color-sl-black);
   font-family: 'Bricolage Grotesque', system-ui, sans-serif;
 }
-
 .announcement-bar a {
   color: var(--color-sl-white);
   text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
 }
-
 .announcement-bar .sl-accent {
   color: var(--color-sl-yellow);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-ac-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-ac-suede); border-radius: 3px; }
+
+/* ── Number styling ── */
+.display-number {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  color: var(--color-ac-suede-light);
+}
+
+/* ── Hover card ── */
+.hover-lift {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+
+/* ── Marquee ── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+/* ── Pulse dot ── */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pulse-dot {
+  animation: pulse-soft 2.5s ease-in-out infinite;
 }

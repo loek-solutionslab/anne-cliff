@@ -44,18 +44,18 @@ const faqs = [
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   ${getHeader('faq')}
 
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-white">
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-ac-white">
     <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-16 fade-in">
-        <p class="text-xs uppercase tracking-[0.2em] text-ac-muted mb-4">FAQ</p>
-        <h1 class="font-display text-4xl md:text-6xl font-light text-ac-black">
+      <div class="text-center mb-16 reveal">
+        <p class="text-[11px] uppercase tracking-[0.35em] text-ac-muted mb-4">FAQ</p>
+        <h1 class="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-light italic text-ac-black">
           Frequently asked
         </h1>
       </div>
 
       <div class="space-y-0">
         ${faqs.map((faq, i) => `
-          <div class="border-b border-ac-border fade-in fade-in-delay-${Math.min(i + 1, 4)}">
+          <div class="border-b border-ac-border reveal reveal-delay-${Math.min(i + 1, 4)}">
             <button class="faq-toggle w-full flex items-center justify-between py-6 text-left" data-index="${i}">
               <span class="font-display text-lg text-ac-black pr-8">${faq.q}</span>
               <svg class="faq-icon w-5 h-5 text-ac-muted flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         `).join('')}
       </div>
 
-      <div class="text-center mt-16 fade-in">
+      <div class="text-center mt-16 reveal">
         <p class="text-ac-muted mb-4">Still have questions?</p>
         <a href="/pages/contact.html" class="inline-flex items-center gap-3 px-8 py-4 bg-ac-black text-ac-white text-sm tracking-wide hover:bg-ac-forest transition-colors duration-300">
           Get in touch
@@ -102,7 +102,7 @@ document.querySelectorAll('.faq-toggle').forEach(btn => {
   })
 })
 
-const elements = document.querySelectorAll('.fade-in')
+const elements = document.querySelectorAll('.reveal, .reveal-left, .line-draw')
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {

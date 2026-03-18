@@ -2,239 +2,336 @@ import '../style.css'
 import { getHeader, initHeader } from '../components/header'
 import { getFooter } from '../components/footer'
 
-const heroImages = [
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80&auto=format',
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80&auto=format',
+// Color swatches representing the product line
+const swatches = [
+  { name: 'Midnight', hex: '#1a1a1a' },
+  { name: 'Forest', hex: '#2d4a3e' },
+  { name: 'Suede', hex: '#c4a882' },
+  { name: 'Slate', hex: '#6b7f99' },
+  { name: 'Teal', hex: '#3a6b6b' },
 ]
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   ${getHeader('home')}
+  <div class="grain" aria-hidden="true"></div>
 
-  <!-- Hero -->
-  <section class="min-h-[90vh] flex items-center bg-ac-cream relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-6 md:px-12 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center w-full">
-      <div class="space-y-8 fade-in">
+  <!-- ════════ HERO ════════ -->
+  <section class="relative min-h-[100svh] flex items-end bg-ac-warm overflow-hidden fabric-texture">
+    <!-- Background gradient that evokes fabric -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 70% 20%, #4a3f35 0%, #2a2420 40%, #1a1615 100%);"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 20% 80%, rgba(196,168,130,0.15) 0%, transparent 60%);"></div>
+
+    <div class="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-16 pb-16 md:pb-24 pt-32 md:pt-48">
+      <div class="grid md:grid-cols-[1fr_340px] gap-12 md:gap-20 items-end">
         <div>
-          <p class="text-xs uppercase tracking-[0.2em] text-ac-muted mb-6">Premium underwear subscription</p>
-          <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-[0.95] tracking-tight text-ac-black">
-            Comfort<br>
-            <span class="italic text-ac-teal">without</span><br>
-            compromise
+          <!-- Eyebrow -->
+          <p class="reveal text-[11px] uppercase tracking-[0.35em] text-ac-suede mb-8 font-body">
+            Premium underwear subscription
+          </p>
+
+          <!-- Main headline -->
+          <h1 class="reveal reveal-delay-1 font-display text-[clamp(3rem,8vw,7.5rem)] font-light leading-[0.88] tracking-[-0.03em] text-ac-white">
+            The only<br>
+            boxer you'll<br>
+            <span class="italic text-ac-suede">ever need</span>
           </h1>
+
+          <!-- Separator -->
+          <div class="line-draw w-24 mt-10 mb-8"></div>
+
+          <!-- Subtitle -->
+          <p class="reveal reveal-delay-2 text-white/50 text-[15px] leading-relaxed max-w-[420px] font-light">
+            95% Tencel&trade; Lyocell. One fit. &euro;16. Delivered every six weeks to your letterbox. No prints. No fuss. Just the fabric you deserve.
+          </p>
+
+          <!-- CTA -->
+          <div class="reveal reveal-delay-3 mt-10 flex flex-wrap items-center gap-5">
+            <a href="/pages/product.html" class="group inline-flex items-center gap-3 px-8 py-4 bg-ac-suede text-ac-dark text-[13px] font-medium uppercase tracking-[0.15em] hover:bg-ac-white transition-colors duration-500">
+              Start subscription
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="/pages/about.html" class="link-underline text-white/40 text-[13px] uppercase tracking-[0.15em] hover:text-white/70 transition-colors duration-300">
+              Our story
+            </a>
+          </div>
         </div>
-        <p class="text-ac-muted text-lg md:text-xl max-w-md leading-relaxed">
-          95% Tencel&trade; Lyocell. One perfect fit. Delivered every 6 weeks. No prints. No fuss. Just premium comfort at an honest price.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="/pages/product.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-ac-black text-ac-white text-sm tracking-wide hover:bg-ac-forest transition-colors duration-300">
-            Start your subscription
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+
+        <!-- Right column: product swatch tower -->
+        <div class="reveal reveal-delay-4 hidden md:flex flex-col items-center gap-3">
+          ${swatches.map((s, i) => `
+            <div class="swatch w-full aspect-[4/3] relative cursor-pointer" style="background: ${s.hex};">
+              <span class="absolute bottom-3 right-4 text-[10px] uppercase tracking-[0.2em] ${i === 0 || i === 1 || i === 4 ? 'text-white/40' : 'text-black/30'}">${s.name}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Bottom stats bar -->
+      <div class="reveal reveal-delay-5 mt-16 pt-8 border-t border-white/10 grid grid-cols-3 md:grid-cols-3 gap-8">
+        <div>
+          <p class="font-display text-3xl md:text-4xl font-light italic text-ac-suede">&euro;16</p>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-white/30 mt-1">Per boxer</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl md:text-4xl font-light italic text-ac-suede">95%</p>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-white/30 mt-1">Tencel&trade; Lyocell</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl md:text-4xl font-light italic text-ac-suede">6w</p>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-white/30 mt-1">Delivery cycle</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ MARQUEE DIVIDER ════════ -->
+  <div class="bg-ac-cream py-4 overflow-hidden border-y border-ac-border">
+    <div class="flex whitespace-nowrap marquee-track">
+      ${Array(8).fill('').map(() =>
+        `<span class="font-display text-xl italic text-ac-muted/30 mx-8">Tencel&trade; Lyocell</span>
+         <span class="text-ac-suede/40 mx-4">&bull;</span>
+         <span class="font-display text-xl italic text-ac-muted/30 mx-8">Premium comfort</span>
+         <span class="text-ac-suede/40 mx-4">&bull;</span>
+         <span class="font-display text-xl italic text-ac-muted/30 mx-8">&euro;16 per pair</span>
+         <span class="text-ac-suede/40 mx-4">&bull;</span>`
+      ).join('')}
+    </div>
+  </div>
+
+  <!-- ════════ THE FABRIC ════════ -->
+  <section class="py-28 md:py-40 px-6 md:px-16 bg-ac-white">
+    <div class="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-20 items-center">
+      <!-- Left: large fabric swatch visualization -->
+      <div class="reveal">
+        <div class="relative aspect-square">
+          <!-- Layered gradients to simulate fabric texture -->
+          <div class="absolute inset-0" style="background: linear-gradient(145deg, #e8dfd4 0%, #d4c4a8 30%, #c4a882 60%, #b89a72 100%);"></div>
+          <div class="absolute inset-0" style="background: repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.03) 1px, rgba(255,255,255,0.03) 2px); mix-blend-mode: overlay;"></div>
+          <div class="absolute inset-0" style="background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.02) 1px, rgba(0,0,0,0.02) 2px); mix-blend-mode: multiply;"></div>
+          <!-- Label -->
+          <div class="absolute bottom-8 left-8 right-8">
+            <p class="text-[10px] uppercase tracking-[0.3em] text-ac-warm/40 mb-2">Material</p>
+            <p class="font-display text-3xl md:text-4xl font-light italic text-ac-warm/70">Tencel&trade; Lyocell</p>
+          </div>
+          <!-- Corner detail -->
+          <div class="absolute top-8 right-8 text-right">
+            <p class="text-[10px] uppercase tracking-[0.3em] text-ac-warm/30">95 / 5</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: content -->
+      <div class="reveal reveal-delay-2">
+        <p class="text-[11px] uppercase tracking-[0.35em] text-ac-muted mb-6">The fabric</p>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[0.95] tracking-tight text-ac-black mb-8">
+          Silk-like softness.<br>
+          <span class="italic text-ac-teal">Half the price.</span>
+        </h2>
+        <div class="space-y-5 text-ac-muted text-[15px] leading-relaxed">
+          <p>Tencel is made from sustainably sourced wood pulp. Softer than cotton. More breathable. Naturally temperature-regulating. The same fiber used by &euro;35 premium brands.</p>
+          <p>We use 95% Tencel Lyocell with 5% elastane for stretch that holds its shape. Wash after wash.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-6 mt-10">
+          <div class="py-4 border-t border-ac-border">
+            <p class="text-[10px] uppercase tracking-[0.25em] text-ac-muted mb-1">Breathability</p>
+            <p class="font-display text-xl italic text-ac-black">50% &gt; cotton</p>
+          </div>
+          <div class="py-4 border-t border-ac-border">
+            <p class="text-[10px] uppercase tracking-[0.25em] text-ac-muted mb-1">Moisture</p>
+            <p class="font-display text-xl italic text-ac-black">Wicks &amp; dries</p>
+          </div>
+          <div class="py-4 border-t border-ac-border">
+            <p class="text-[10px] uppercase tracking-[0.25em] text-ac-muted mb-1">Production</p>
+            <p class="font-display text-xl italic text-ac-black">Closed-loop</p>
+          </div>
+          <div class="py-4 border-t border-ac-border">
+            <p class="text-[10px] uppercase tracking-[0.25em] text-ac-muted mb-1">Durability</p>
+            <p class="font-display text-xl italic text-ac-black">Holds shape</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ HOW IT WORKS ════════ -->
+  <section class="py-28 md:py-40 px-6 md:px-16 bg-ac-cream fabric-texture">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="reveal mb-20 md:mb-28">
+        <p class="text-[11px] uppercase tracking-[0.35em] text-ac-muted mb-6">Process</p>
+        <h2 class="font-display text-4xl md:text-6xl lg:text-7xl font-light leading-[0.9] tracking-tight text-ac-black">
+          No choices.<br>
+          <span class="italic text-ac-forest">Just comfort.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-0">
+        ${[
+          { num: '01', title: 'Choose your size', body: 'One fit. One design. Select your size and frequency. We eliminated everything unnecessary.', color: '#2d4a3e' },
+          { num: '02', title: 'We deliver', body: 'A fresh pair every 6 weeks. Letterbox-friendly. No signing. No waiting. It\u2019s just there.', color: '#3a6b6b' },
+          { num: '03', title: 'You stay', body: 'No contracts. Pause or cancel anytime. But once you feel Tencel, you won\u2019t go back.', color: '#c4a882' },
+        ].map((step, i) => `
+          <div class="reveal reveal-delay-${i + 1} group relative p-10 md:p-12 border-b md:border-b-0 md:border-r border-ac-border last:border-r-0 last:border-b-0">
+            <span class="display-number text-7xl md:text-8xl block mb-8">${step.num}</span>
+            <h3 class="font-display text-2xl font-light text-ac-black mb-4">${step.title}</h3>
+            <p class="text-ac-muted text-[14px] leading-relaxed">${step.body}</p>
+            <!-- Accent line on hover -->
+            <div class="absolute bottom-0 left-10 right-10 md:left-12 md:right-12 h-[2px] transition-transform duration-700 origin-left scale-x-0 group-hover:scale-x-100" style="background: ${step.color};"></div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PRICING / THE COMPARISON ════════ -->
+  <section class="py-28 md:py-40 px-6 md:px-16 bg-ac-dark text-ac-white fabric-texture">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="reveal mb-20">
+        <p class="text-[11px] uppercase tracking-[0.35em] text-ac-suede mb-6">Honest pricing</p>
+        <h2 class="font-display text-4xl md:text-6xl font-light leading-[0.95] tracking-tight">
+          Same quality.<br>
+          <span class="italic text-ac-suede">Fair price.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Competitor -->
+        <div class="reveal reveal-delay-1 p-8 md:p-10 border border-white/8 bg-white/[0.02]">
+          <p class="text-[10px] uppercase tracking-[0.25em] text-white/30 mb-6">Premium brand</p>
+          <p class="font-display text-5xl md:text-6xl font-light italic text-white/20">&euro;35</p>
+          <div class="mt-8 space-y-3 text-[13px] text-white/30">
+            <div class="flex justify-between py-2 border-b border-white/5">
+              <span>Material</span><span class="text-white/50">Tencel Lyocell</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-white/5">
+              <span>Subscription</span><span>No</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span>Design</span><span class="text-white/50">Clean</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anne Cliff (featured) -->
+        <div class="reveal reveal-delay-2 p-8 md:p-10 border border-ac-suede/40 bg-ac-suede/[0.06] relative">
+          <div class="absolute top-0 left-0 right-0 h-[2px] bg-ac-suede"></div>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-ac-suede mb-6">Anne Cliff</p>
+          <p class="font-display text-5xl md:text-6xl font-light italic text-ac-suede">&euro;16</p>
+          <div class="mt-8 space-y-3 text-[13px] text-white/50">
+            <div class="flex justify-between py-2 border-b border-white/8">
+              <span>Material</span><span class="text-ac-white">Tencel Lyocell</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-white/8">
+              <span>Subscription</span><span class="text-ac-white">Every 6 weeks</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span>Design</span><span class="text-ac-white">Clean, one fit</span>
+            </div>
+          </div>
+          <a href="/pages/product.html" class="group mt-8 inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.15em] text-ac-suede hover:text-ac-white transition-colors">
+            Select
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
-          <a href="/pages/about.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 border border-ac-black text-ac-black text-sm tracking-wide hover:bg-ac-black hover:text-ac-white transition-colors duration-300">
-            Our story
-          </a>
         </div>
-        <div class="flex items-center gap-8 pt-4">
-          <div class="text-center">
-            <p class="font-display text-2xl text-ac-black">&euro;16</p>
-            <p class="text-xs text-ac-muted uppercase tracking-wider">per boxer</p>
-          </div>
-          <div class="w-px h-8 bg-ac-border"></div>
-          <div class="text-center">
-            <p class="font-display text-2xl text-ac-black">1</p>
-            <p class="text-xs text-ac-muted uppercase tracking-wider">perfect fit</p>
-          </div>
-          <div class="w-px h-8 bg-ac-border"></div>
-          <div class="text-center">
-            <p class="font-display text-2xl text-ac-black">6w</p>
-            <p class="text-xs text-ac-muted uppercase tracking-wider">delivery cycle</p>
-          </div>
-        </div>
-      </div>
-      <div class="relative fade-in fade-in-delay-2">
-        <div class="aspect-[3/4] bg-ac-forest/10 overflow-hidden">
-          <img src="${heroImages[0]}" alt="Anne Cliff premium boxer" class="w-full h-full object-cover object-center" loading="eager" />
-        </div>
-        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-ac-suede/20 -z-10"></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Value props -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 fade-in">
-        <p class="text-xs uppercase tracking-[0.2em] text-ac-muted mb-4">Why Anne Cliff</p>
-        <h2 class="font-display text-3xl md:text-5xl font-light text-ac-black">
-          Premium comfort.<br>Honest price.
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 md:gap-12">
-        <div class="text-center space-y-4 fade-in fade-in-delay-1">
-          <div class="w-16 h-16 mx-auto flex items-center justify-center border border-ac-border">
-            <svg class="w-7 h-7 text-ac-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-          </div>
-          <h3 class="font-display text-xl text-ac-black">95% Tencel&trade; Lyocell</h3>
-          <p class="text-ac-muted text-sm leading-relaxed">
-            CDLP-level quality at an honest price. Silk-like softness, breathable, sustainable. The fabric you deserve.
-          </p>
-        </div>
-        <div class="text-center space-y-4 fade-in fade-in-delay-2">
-          <div class="w-16 h-16 mx-auto flex items-center justify-center border border-ac-border">
-            <svg class="w-7 h-7 text-ac-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-          </div>
-          <h3 class="font-display text-xl text-ac-black">One perfect fit</h3>
-          <p class="text-ac-muted text-sm leading-relaxed">
-            No choice overload. We perfected one fit and one design. If it fits, you stay. That's the deal.
-          </p>
-        </div>
-        <div class="text-center space-y-4 fade-in fade-in-delay-3">
-          <div class="w-16 h-16 mx-auto flex items-center justify-center border border-ac-border">
-            <svg class="w-7 h-7 text-ac-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          </div>
-          <h3 class="font-display text-xl text-ac-black">Every 6 weeks</h3>
-          <p class="text-ac-muted text-sm leading-relaxed">
-            Fresh comfort on your doorstep. No reordering. No thinking. Cancel anytime. 8-9 pairs per year.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- The problem -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-dark text-ac-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-      <div class="space-y-6 fade-in">
-        <p class="text-xs uppercase tracking-[0.2em] text-ac-suede">The problem</p>
-        <h2 class="font-display text-3xl md:text-5xl font-light leading-tight">
-          Premium underwear<br>shouldn't cost &euro;35<br>per pair
-        </h2>
-        <p class="text-white/60 text-lg leading-relaxed">
-          The grown man is stuck. Cheap &amp; loud, or premium &amp; overpriced. There's no subscription for quality. No way to get CDLP comfort without CDLP prices.
-        </p>
-        <div class="space-y-3 pt-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-ac-suede mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <p class="text-white/60">Too old for loud prints and fast-fashion polyester</p>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-ac-suede mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <p class="text-white/60">Too quality-conscious for cotton blends</p>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-ac-suede mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <p class="text-white/60">Unwilling to pay &euro;35 per piece for basics</p>
-          </div>
-        </div>
-      </div>
-      <div class="fade-in fade-in-delay-2">
-        <div class="space-y-4">
-          <div class="bg-white/5 p-6 border border-white/10">
-            <div class="flex justify-between items-center mb-2">
-              <span class="text-sm text-white/40">Competitor A</span>
-              <span class="font-display text-xl">&euro;35</span>
+        <!-- Mass market -->
+        <div class="reveal reveal-delay-3 p-8 md:p-10 border border-white/8 bg-white/[0.02]">
+          <p class="text-[10px] uppercase tracking-[0.25em] text-white/30 mb-6">Mass market</p>
+          <p class="font-display text-5xl md:text-6xl font-light italic text-white/20">&euro;12</p>
+          <div class="mt-8 space-y-3 text-[13px] text-white/30">
+            <div class="flex justify-between py-2 border-b border-white/5">
+              <span>Material</span><span>Cotton blend</span>
             </div>
-            <p class="text-xs text-white/30">Premium quality. Premium price. No subscription.</p>
-          </div>
-          <div class="bg-white/5 p-6 border border-white/10">
-            <div class="flex justify-between items-center mb-2">
-              <span class="text-sm text-white/40">Competitor B</span>
-              <span class="font-display text-xl">&euro;12</span>
+            <div class="flex justify-between py-2 border-b border-white/5">
+              <span>Subscription</span><span class="text-white/50">Yes</span>
             </div>
-            <p class="text-xs text-white/30">Subscription available. Cotton. Loud prints.</p>
-          </div>
-          <div class="bg-ac-forest p-6 border border-ac-suede/30">
-            <div class="flex justify-between items-center mb-2">
-              <span class="text-sm text-ac-suede">Anne Cliff</span>
-              <span class="font-display text-xl text-ac-white">&euro;16</span>
+            <div class="flex justify-between py-2">
+              <span>Design</span><span>Prints, loud</span>
             </div>
-            <p class="text-xs text-white/60">Premium Tencel Lyocell. Subscription. Clean design.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-cream">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 fade-in">
-        <p class="text-xs uppercase tracking-[0.2em] text-ac-muted mb-4">How it works</p>
-        <h2 class="font-display text-3xl md:text-5xl font-light text-ac-black">
-          Three steps. Zero hassle.
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-12">
-        <div class="fade-in fade-in-delay-1">
-          <span class="font-display text-6xl font-light text-ac-border">01</span>
-          <h3 class="font-display text-xl text-ac-black mt-4 mb-3">Pick your size</h3>
-          <p class="text-ac-muted text-sm leading-relaxed">One fit. Choose your size. That's it. No color selection, no style options. We made the decisions so you don't have to.</p>
-        </div>
-        <div class="fade-in fade-in-delay-2">
-          <span class="font-display text-6xl font-light text-ac-border">02</span>
-          <h3 class="font-display text-xl text-ac-black mt-4 mb-3">We ship every 6 weeks</h3>
-          <p class="text-ac-muted text-sm leading-relaxed">A fresh pair arrives at your door. Letterbox-friendly packaging. No signing. No waiting. Just there when you need it.</p>
-        </div>
-        <div class="fade-in fade-in-delay-3">
-          <span class="font-display text-6xl font-light text-ac-border">03</span>
-          <h3 class="font-display text-xl text-ac-black mt-4 mb-3">Stay or go</h3>
-          <p class="text-ac-muted text-sm leading-relaxed">No lock-in. Pause or cancel anytime. But once you feel the difference, you'll stay. That's not marketing. That's Tencel.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Brand story snippet -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-white">
-    <div class="max-w-3xl mx-auto text-center space-y-8 fade-in">
-      <p class="text-xs uppercase tracking-[0.2em] text-ac-muted">Our belief</p>
-      <blockquote class="font-display text-2xl md:text-4xl font-light leading-snug text-ac-black italic">
-        &ldquo;Comfort is not a luxury.<br>And maturity doesn't need loud prints.&rdquo;
+  <!-- ════════ BRAND QUOTE ════════ -->
+  <section class="py-28 md:py-40 px-6 md:px-16 bg-ac-white relative">
+    <div class="max-w-[900px] mx-auto text-center reveal">
+      <div class="line-draw w-16 mx-auto mb-12"></div>
+      <blockquote class="font-display text-3xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight text-ac-black italic">
+        &ldquo;Comfort is not a luxury.<br>
+        Maturity doesn&rsquo;t need<br>
+        loud prints.&rdquo;
       </blockquote>
-      <p class="text-ac-muted text-lg leading-relaxed max-w-xl mx-auto">
-        Every morning starts with a routine. Shower. Coffee. Shirt. Go. You don't think about your underwear. And that's exactly the point.
+      <div class="line-draw w-16 mx-auto mt-12 mb-10"></div>
+      <p class="text-ac-muted text-[15px] leading-relaxed max-w-[480px] mx-auto">
+        Every morning starts with a routine. Shower. Coffee. Shirt. Go. You don&rsquo;t think about your underwear. And that&rsquo;s exactly the point.
       </p>
-      <a href="/pages/about.html" class="inline-flex items-center gap-2 text-sm text-ac-teal hover:text-ac-forest transition-colors tracking-wide">
-        Read our full story
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      <a href="/pages/about.html" class="link-underline inline-block mt-8 text-[12px] uppercase tracking-[0.15em] text-ac-teal hover:text-ac-forest transition-colors">
+        Read our story
       </a>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-20 md:py-32 px-6 md:px-12 bg-ac-forest text-ac-white text-center">
-    <div class="max-w-3xl mx-auto space-y-8 fade-in">
-      <h2 class="font-display text-3xl md:text-5xl font-light">
-        Ready for better?
-      </h2>
-      <p class="text-white/70 text-lg">
-        &euro;16 per boxer. Every 6 weeks. Cancel anytime.
-      </p>
-      <a href="/pages/product.html" class="inline-flex items-center gap-3 px-10 py-4 bg-ac-white text-ac-black text-sm tracking-wide hover:bg-ac-suede hover:text-ac-white transition-colors duration-300">
-        Start your subscription
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
+  <!-- ════════ SUBSCRIPTION CTA ════════ -->
+  <section class="relative py-28 md:py-40 px-6 md:px-16 overflow-hidden" style="background: linear-gradient(135deg, #2d4a3e 0%, #1a332b 50%, #1a2520 100%);">
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 80% 50%, rgba(196,168,130,0.08) 0%, transparent 60%);"></div>
+    <div class="relative z-10 max-w-[1400px] mx-auto grid md:grid-cols-[1fr_1fr] gap-16 items-center">
+      <div class="reveal">
+        <p class="text-[11px] uppercase tracking-[0.35em] text-ac-suede/60 mb-6">Subscribe</p>
+        <h2 class="font-display text-4xl md:text-6xl font-light leading-[0.95] tracking-tight text-ac-white mb-6">
+          Ready to feel<br>
+          <span class="italic text-ac-suede">the difference?</span>
+        </h2>
+        <p class="text-white/40 text-[15px] leading-relaxed max-w-[400px]">
+          &euro;16 per boxer. Every 6 weeks. Free shipping. Cancel anytime. Start with one &mdash; stay for the comfort.
+        </p>
+      </div>
+      <div class="reveal reveal-delay-2 flex flex-col gap-4">
+        <!-- Subscription tiers -->
+        ${[
+          { interval: 'Every 6 weeks', price: '16', note: '~8 per year', recommended: true },
+          { interval: 'Every 2 months', price: '17', note: '6 per year', recommended: false },
+          { interval: 'Every 3 months', price: '18', note: '4 per year', recommended: false },
+        ].map(tier => `
+          <div class="hover-lift group flex items-center justify-between p-6 ${tier.recommended ? 'border border-ac-suede/40 bg-white/[0.04]' : 'border border-white/8 bg-white/[0.02]'} cursor-pointer">
+            <div class="flex items-center gap-4">
+              ${tier.recommended ? '<span class="pulse-dot w-2 h-2 rounded-full bg-ac-suede flex-shrink-0"></span>' : '<span class="w-2 h-2 rounded-full bg-white/10 flex-shrink-0"></span>'}
+              <div>
+                <p class="text-ac-white text-[14px]">${tier.interval}</p>
+                <p class="text-white/30 text-[11px] mt-0.5">${tier.note}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="font-display text-2xl italic ${tier.recommended ? 'text-ac-suede' : 'text-white/40'}">&euro;${tier.price}</span>
+              <svg class="w-4 h-4 text-white/20 group-hover:text-ac-suede transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        `).join('')}
+        <a href="/pages/product.html" class="group mt-4 inline-flex items-center justify-center gap-3 px-8 py-4 bg-ac-suede text-ac-dark text-[13px] font-medium uppercase tracking-[0.15em] hover:bg-ac-white transition-colors duration-500">
+          Start your subscription
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
   ${getFooter()}
 `
 
+// Init
 initHeader()
 
-// Fade in observer
-const elements = document.querySelectorAll('.fade-in')
-const observer = new IntersectionObserver(
+// Reveal observer
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .line-draw')
+const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible')
-        observer.unobserve(entry.target)
+        revealObserver.unobserve(entry.target)
       }
     })
   },
-  { threshold: 0.1 }
+  { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
 )
-elements.forEach((el) => observer.observe(el))
+revealEls.forEach((el) => revealObserver.observe(el))
